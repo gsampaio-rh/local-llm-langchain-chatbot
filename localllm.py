@@ -3,6 +3,7 @@ import logging
 import click
 import torch
 from langchain.chains import RetrievalQA
+from langchain.vectorstores import Chroma
 from langchain.vectorstores import FAISS
 from langchain.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -12,16 +13,13 @@ from langchain.callbacks.manager import CallbackManager
 
 callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
 
-from prompt_template import get_prompt_template
-
-# from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from langchain.vectorstores import Chroma
+from modules.prompt_template import get_prompt_template
 
 from modules.load_models import (
     load_model,
 )
 
-from constants import (
+from modules.constants import (
     EMBEDDING_MODEL_NAME,
     PERSIST_DIRECTORY,
     MODEL_ID,
