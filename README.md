@@ -34,15 +34,15 @@ For more information about these technologies, visit:
 - [Instructor Embedding Project](https://instructor-embedding.github.io/)
 - [LLaMA-2-7b-chat Model on HuggingFace](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF)
 - [all-MiniLM-L6-v2 on HuggingFace](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
-- 
+
 ## Modules
 
 The Local LLM Langchain ChatBot is organized into several modules, each handling specific aspects of its functionality. This modular approach enhances the readability, maintainability, and scalability of the application. Below is an overview of each module:
 
 - `constants.py`: Contains key variables like model names, directory paths, and other settings that remain constant throughout the application's lifecycle.
 - `load_models.py`: Includes functions to load various types of models (quantized, full models) and manages device-specific configurations (CPU, GPU).
--`prompt_template.py`: Contains functions to generate and manage different prompt templates, ensuring flexibility and context relevance in user interactions.
--`qa_pipeline.py`: Initializes the QA system, incorporating elements like embeddings, Chroma vector store, and retrieval mechanisms. It orchestrates the interaction between the language models and the data retrieval process.
+- `prompt_template.py`: Contains functions to generate and manage different prompt templates, ensuring flexibility and context relevance in user interactions.
+- `qa_pipeline.py`: Initializes the QA system, incorporating elements like embeddings, Chroma vector store, and retrieval mechanisms. It orchestrates the interaction between the language models and the data retrieval process.
 
 Each module is designed to function cohesively with others, ensuring that the application runs smoothly and efficiently. The separation into modules also makes it easier to update or extend individual components without affecting the entire system.
 
