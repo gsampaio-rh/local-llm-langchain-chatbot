@@ -19,7 +19,7 @@ from constants import (
 )
 
 def file_log(logentry):
-   file1 = open("file_ingest.log","a")
+   file1 = open("logs/file_ingest.log","a")
    file1.write(logentry + "\n")
    file1.close()
    print(logentry + "\n")
