@@ -56,7 +56,6 @@ def load_document_batch(filepaths):
            # return data and file paths
            return (data_list, filepaths)
 
-
 def load_documents(source_dir: str) -> list[Document]:
     # Loads all documents from the source documents directory, including nested folders
     paths = []
@@ -145,9 +144,12 @@ def main(device_type):
     if not os.path.exists(LOGS_PATH):
         os.mkdir(LOGS_PATH)
 
-    # Load documents and split in chunks
+    # Load documents
     logging.info(f"Loading documents from {SOURCE_DIRECTORY}")
     documents = load_documents(SOURCE_DIRECTORY)
+    logging.info(f"Loaded {len(documents)} documents from {SOURCE_DIRECTORY}")
+
+    #split in chunks
     text_documents, python_documents = split_documents(documents)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     python_splitter = RecursiveCharacterTextSplitter.from_language(
@@ -155,7 +157,6 @@ def main(device_type):
     )
     texts = text_splitter.split_documents(text_documents)
     texts.extend(python_splitter.split_documents(python_documents))
-    logging.info(f"Loaded {len(documents)} documents from {SOURCE_DIRECTORY}")
     logging.info(f"Split into {len(texts)} chunks of text")
 
     # Create embeddings

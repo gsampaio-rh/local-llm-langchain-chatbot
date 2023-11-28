@@ -10,3 +10,4 @@ llama-cpp-python
 docx2txt
 unstructured
 unstructured[pdf]
+markdown
