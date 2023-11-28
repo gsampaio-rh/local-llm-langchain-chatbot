@@ -1,11 +1,12 @@
 # Ignore vscode
 /.vscode
 
-# 
+# app default folders
 /data
 /models
 /db
 /chroma
+/logs
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

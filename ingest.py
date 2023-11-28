@@ -16,10 +16,11 @@ from modules.constants import (
     INGEST_THREADS,
     PERSIST_DIRECTORY,
     SOURCE_DIRECTORY,
+    LOGS_PATH,
 )
 
 def file_log(logentry):
-   file1 = open("logs/file_ingest.log","a")
+   file1 = open(f"{LOGS_PATH}/file_ingest.log","a")
    file1.write(logentry + "\n")
    file1.close()
    print(logentry + "\n")
@@ -139,6 +140,11 @@ def split_documents(documents: list[Document]) -> tuple[list[Document], list[Doc
 )
 
 def main(device_type):
+
+    # check if models directory do not exist, create a new one and store models here.
+    if not os.path.exists(LOGS_PATH):
+        os.mkdir(LOGS_PATH)
+
     # Load documents and split in chunks
     logging.info(f"Loading documents from {SOURCE_DIRECTORY}")
     documents = load_documents(SOURCE_DIRECTORY)
