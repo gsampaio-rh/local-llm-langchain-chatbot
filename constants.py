@@ -15,7 +15,7 @@ SOURCE_DIRECTORY = f"{ROOT_DIRECTORY}/data"
 
 PERSIST_DIRECTORY = f"{ROOT_DIRECTORY}/db"
 
-MODELS_PATH = "./models"
+MODELS_PATH = f"{ROOT_DIRECTORY}/models"
 
 # Can be changed to a specific number
 INGEST_THREADS = os.cpu_count() or 8

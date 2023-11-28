@@ -1,5 +1,8 @@
 langchain==0.0.225
 sentence-transformers==2.2.2
+InstructorEmbedding
 pypdf
 chromadb
 auto_gptq
+faiss-cpu
+llama-cpp-python
