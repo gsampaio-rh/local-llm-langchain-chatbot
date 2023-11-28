@@ -6,7 +6,7 @@ The Local LLM Langchain ChatBot a tool designed to simplify the process of extra
 
 This application is particularly useful for those who need to sift through extensive archives and extract meaningful insights without manually reviewing each document. It's an asset for researchers, data analysts, historians, and anyone dealing with large volumes of archived material.
 
-## Key Technologies:
+## Key Technologies
 
 - **Langchain**: This is the cornerstone of the application, integrating Large Language Models (LLMs) to interpret and respond to natural language queries.
 - **ChromaDB**: Used for efficient data management and retrieval, ChromaDB enhances the application's ability to handle and process large datasets.
@@ -14,10 +14,16 @@ This application is particularly useful for those who need to sift through exten
 - **HuggingFace Hub**: The application utilizes HuggingFace Hub to download and implement the necessary models, ensuring access to the latest and most efficient AI models.
 - **HuggingFaceInstructEmbeddings**: This plays a pivotal role in the application by leveraging the power of Sentence Transformers for semantic search. It uses the INSTRUCTOR method, an instruction-finetuned text embedding model capable of generating text embeddings tailored to various tasks and domains. INSTRUCTOR embeds text inputs with instructions explaining the use case, enabling it to adapt to different downstream tasks and domains without additional training. This approach is key for efficient and accurate semantic search, enabling the application to find documents or text passages that are semantically related to user queries.
 - **HuggingFaceInstructEmbeddings with Instructor Method**: This plays a pivotal role in the application by leveraging the power of Sentence Transformers for semantic search. It uses the INSTRUCTOR method, an instruction-finetuned text embedding model capable of generating text embeddings tailored to various tasks and domains. INSTRUCTOR embeds text inputs with instructions explaining the use case, enabling it to adapt to different downstream tasks and domains without additional training. This approach is key for efficient and accurate semantic search, enabling the application to find documents or text pass
-  > **Semantic Understanding**: Unlike traditional word-level embeddings, Sentence Transformers consider the entire context of a sentence, leading to a more nuanced understanding of its meaning.
-  >
-  > **Efficiency in Semantic Search**: By converting sentences into dense vector spaces, these models enable efficient similarity comparisons, crucial for semantic search applications.
+  - **Semantic Understanding**: Unlike traditional word-level embeddings, Sentence Transformers consider the entire context of a sentence, leading to a more nuanced understanding of its meaning.
+  - **Efficiency in Semantic Search**: By converting sentences into dense vector spaces, these models enable efficient similarity comparisons, crucial for semantic search applications.
 - **LLAMACPP**: A Python interface for the LLaMA model, offering efficient interaction with the language model.
+
+## Models
+
+In this context, models refer to pre-trained artificial intelligence systems that have been developed to perform specific tasks, such as understanding natural language or generating text responses. These models are crucial for the application's ability to process and respond to user queries accurately and efficiently.
+
+- **Interpretation and Response Generation**: The base model (`LLaMA-2-7b-chat`) interprets user queries and generates appropriate responses, facilitating an interactive and engaging user experience.
+- **Semantic Search and Information Retrieval**: The embedded model (`all-MiniLM-L6-v2`) plays a vital role in semantic search, helping the application to understand and match the context of queries with the archived data.
 
 For more information about these technologies, visit:
 - [Langchain](https://www.langchain.com/)
@@ -26,19 +32,9 @@ For more information about these technologies, visit:
 - [HuggingFace Hub Documentation](https://huggingface.co/docs/hub/index)
 - [LLAMACPP on GitHub](https://github.com/ggerganov/llama.cpp)
 - [Instructor Embedding Project](https://instructor-embedding.github.io/)
-
-## Models
-
-In this context, models refer to pre-trained artificial intelligence systems that have been developed to perform specific tasks, such as understanding natural language or generating text responses. These models are crucial for the application's ability to process and respond to user queries accurately and efficiently.
-
-### Base Model
-The `LLaMA-2-7b-chat Model` serves as the base model. It is specifically tuned for chat-like interactions, making it ideal for interpreting and responding to user queries in a conversational manner.
 - [LLaMA-2-7b-chat Model on HuggingFace](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF)
-
-### Embedded Model
-The application uses the `all-MiniLM-L6-v2` model for efficient and effective text embedding. This model is known for its compact size and powerful performance in generating meaningful text representations.
 - [all-MiniLM-L6-v2 on HuggingFace](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
-
+- 
 ## Modules
 
 The Local LLM Langchain ChatBot is organized into several modules, each handling specific aspects of its functionality. This modular approach enhances the readability, maintainability, and scalability of the application. Below is an overview of each module:
