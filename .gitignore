@@ -1,7 +1,11 @@
 # Ignore vscode
 /.vscode
+
+# 
 /data
 /models
+/db
+/chroma
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

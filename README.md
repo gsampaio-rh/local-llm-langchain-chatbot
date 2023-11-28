@@ -1,18 +1,9 @@
 # Local LLM Langchain ChatBot
 
 ## Introduction
-The Local LLM Langchain ChatBotis a tool designed to simplify the process of extracting and understanding information from archived documents. At the heart of this application is the integration of a Large Language Model (LLM), which enables it to interpret and respond to natural language queries about the contents of loaded archive files.
+The Local LLM Langchain ChatBot a tool designed to simplify the process of extracting and understanding information from archived documents. At the heart of this application is the integration of a Large Language Model (LLM), which enables it to interpret and respond to natural language queries about the contents of loaded archive files.
 
 This application is particularly useful for those who need to sift through extensive archives and extract meaningful insights without manually reviewing each document. It's an asset for researchers, data analysts, historians, and anyone dealing with large volumes of archived material.
-
-## Key Technologies:
-
-- **Langchain**: This forms the core of the application, integrating Large Language Models (LLMs) to interpret and respond to natural language queries.
-- **ChromaDB**: Employed for efficient data management and retrieval, ChromaDB enhances the application's ability to handle large datasets.
-- **FAISS** (Facebook AI Similarity Search): Used for efficient similarity search and clustering of dense vectors, crucial for processing and retrieving information from the archives.
-- **HuggingFace Hub**: The application utilizes HuggingFace Hub to download and implement the necessary models, ensuring access to the latest and most efficient AI models.
-- **Instructor**: Instruction-finetuned text embedding model that can generate text embeddings tailored to any task (e.g., classification, retrieval, clustering, text evaluation, etc.) and domains (e.g., science, finance, etc.) by simply providing the task instruction, without any finetuning.
-- **LLAMACPP**: A Python interface for the LLaMA model, offering efficient interaction with the language model.
 
 ## Key Technologies:
 
@@ -72,3 +63,15 @@ The application allows for various configurations to tailor its operation to you
 - `--save_qa`: Set this option to save Q&A pairs to a CSV file. Default is False.
 
 These options allow you to customize the application's performance and output according to your requirements.
+
+## Ingesting files
+
+The `ingest.py` script in the Python Archive Query Application efficiently transforms archive files into a SQLite3 database for querying and analysis. It starts by loading documents from the source directory, utilizing multithreading for parallel processing. Documents are then split into chunks, and embeddings are generated for each chunk using HuggingFaceInstructEmbeddings. These embeddings are stored in Chroma, a vector store, which ultimately compiles the data into a SQLite3 database. This streamlined process ensures efficient processing and quick retrieval of data, making it ideal for handling large volumes of archived material."
+
+### Usage
+To run the `ingest.py` script, use the following command:
+```bash
+python ingest.py --device_type [chosen_device]
+```
+
+This command will start the ingestion process, loading and processing all documents in the specified source directory.
