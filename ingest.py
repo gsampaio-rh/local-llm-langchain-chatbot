@@ -96,7 +96,6 @@ def load_documents(source_dir: str) -> list[Document]:
                 
     return docs
 
-
 def split_documents(documents: list[Document]) -> tuple[list[Document], list[Document]]:
     # Splits documents for correct Text Splitter
     text_docs, python_docs = [], []
@@ -108,7 +107,6 @@ def split_documents(documents: list[Document]) -> tuple[list[Document], list[Doc
            else:
                text_docs.append(doc)
     return text_docs, python_docs
-
 
 @click.command()
 @click.option(
@@ -139,6 +137,7 @@ def split_documents(documents: list[Document]) -> tuple[list[Document], list[Doc
     ),
     help="Device to run on. (Default is cuda)",
 )
+
 def main(device_type):
     # Load documents and split in chunks
     logging.info(f"Loading documents from {SOURCE_DIRECTORY}")
@@ -172,8 +171,6 @@ def main(device_type):
         client_settings=CHROMA_SETTINGS,
     )
    
-
-
 if __name__ == "__main__":
     logging.basicConfig(
         format="%(asctime)s - %(levelname)s - %(filename)s:%(lineno)s - %(message)s", level=logging.INFO
