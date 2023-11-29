@@ -17,6 +17,7 @@ This application is particularly useful for those who need to sift through exten
   - **Semantic Understanding**: Unlike traditional word-level embeddings, Sentence Transformers consider the entire context of a sentence, leading to a more nuanced understanding of its meaning.
   - **Efficiency in Semantic Search**: By converting sentences into dense vector spaces, these models enable efficient similarity comparisons, crucial for semantic search applications.
 - **LLAMACPP**: A Python interface for the LLaMA model, offering efficient interaction with the language model.
+- **Streamlit**: A key technology for building the interactive web interface of the application. Streamlit allows for rapid development of user-friendly interfaces, enabling users to interact with the application's core functionalities through a web browser. It's used to create an accessible and intuitive environment where users can input queries, receive responses, and view relevant documents, enhancing the overall user experience.
 
 ## Models
 
@@ -32,6 +33,7 @@ For more information about these technologies, visit:
 - [HuggingFace Hub Documentation](https://huggingface.co/docs/hub/index)
 - [LLAMACPP on GitHub](https://github.com/ggerganov/llama.cpp)
 - [Instructor Embedding Project](https://instructor-embedding.github.io/)
+- [Streamlit](https://streamlit.io/)
 - [LLaMA-2-7b-chat Model on HuggingFace](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF)
 - [all-MiniLM-L6-v2 on HuggingFace](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
 
@@ -112,3 +114,23 @@ python ingest.py --device_type [chosen_device]
 ```
 
 This command will start the ingestion process, loading and processing all documents in the specified source directory.
+
+## Running the Streamlit Interface (`app.py`)
+
+The application provides an interactive user interface using Streamlit, a powerful tool for creating web applications. The `app.py` script is responsible for setting up and running this interface, allowing users to converse with their data through a chatbot powered by LangChain and LocalGPT.
+
+### How to Run
+1. **Dependencies**:
+   - Ensure you have Streamlit installed in your environment. If not, install it using `pip install streamlit`.
+
+2. **Starting the Application**:
+   - Run the application by executing the following command in your terminal:
+     ```bash
+     streamlit run app.py
+     ```
+   - This command starts the Streamlit server and opens the application in your default web browser.
+
+3. **Interacting with the Application**:
+   - Once the application is running, you'll see a text input box where you can enter your prompts or queries.
+   - After submitting a prompt, the application processes it using the configured language model and retriever, then displays the generated response on the screen.
+   - Users can interact with the application as if they are conversing with a chatbot, receiving answers based on the archived data and models.
