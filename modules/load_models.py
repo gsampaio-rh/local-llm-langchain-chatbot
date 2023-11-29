@@ -12,9 +12,6 @@ from transformers import (
     AutoTokenizer,
     LlamaForCausalLM,
     LlamaTokenizer,
-)
-
-from transformers import (
     GenerationConfig,
     pipeline,
 )

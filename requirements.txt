@@ -11,3 +11,5 @@ docx2txt
 unstructured
 unstructured[pdf]
 markdown
+streamlit
+streamlit_extras
