@@ -132,9 +132,16 @@ def load_full_model(model_id, model_basename, device_type, logging):
     """
 
     if device_type.lower() in ["mps", "cpu"]:
-        logging.info("Using LlamaTokenizer")
-        tokenizer = LlamaTokenizer.from_pretrained(model_id, cache_dir="./models/")
-        model = LlamaForCausalLM.from_pretrained(model_id, cache_dir="./models/")
+        if model_id == "tiiuae/falcon-7b-instruct":
+            logging.info("Model ID matches 'tiiuae/falcon-7b-instruct'.")
+            logging.info("Using AutoModelForCausalLM for full models")
+            model = AutoModelForCausalLM.from_pretrained(model_id, cache_dir="./models/", return_dict=True, trust_remote_code=True)
+            logging.info("Tokenizer loaded")
+            tokenizer = AutoTokenizer.from_pretrained(model_id, cache_dir="./models/")
+        else:
+            logging.info("Using LlamaTokenizer")
+            tokenizer = LlamaTokenizer.from_pretrained(model_id, cache_dir="./models/")
+            model = LlamaForCausalLM.from_pretrained(model_id, cache_dir="./models/")
     else:
         logging.info("Using AutoModelForCausalLM for full models")
         tokenizer = AutoTokenizer.from_pretrained(model_id, cache_dir="./models/")

@@ -8,7 +8,7 @@ from langchain.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.chains import RetrievalQA
-from streamlit_extras.add_vertical_space import add_vertical_space
+# from streamlit_extras.add_vertical_space import add_vertical_space
 from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 
@@ -31,6 +31,7 @@ def model_memory():
 
     return prompt, memory
 
+
 # Sidebar contents
 with st.sidebar:
     st.title("🤗💬 Converse with your Data")
@@ -44,17 +45,17 @@ with st.sidebar:
  
     """
     )
-    add_vertical_space(5)
+    # add_vertical_space(5)
     st.write("Made with ❤️ by [Prompt Engineer](https://youtube.com/@engineerprompt)")
 
-# if torch.backends.mps.is_available():
-#     DEVICE_TYPE = "mps"
-# elif torch.cuda.is_available():
-#     DEVICE_TYPE = "cuda"
-# else:
-#     DEVICE_TYPE = "cpu"
 
-DEVICE_TYPE = "cpu"
+if torch.backends.mps.is_available():
+    DEVICE_TYPE = "mps"
+elif torch.cuda.is_available():
+    DEVICE_TYPE = "cuda"
+else:
+    DEVICE_TYPE = "cpu"
+
 
 # if "result" not in st.session_state:
 #     # Run the document ingestion process.
@@ -72,38 +73,21 @@ if "EMBEDDINGS" not in st.session_state:
     st.session_state.EMBEDDINGS = EMBEDDINGS
 
 if "DB" not in st.session_state:
-    # DB = Chroma(
-    #     persist_directory=PERSIST_DIRECTORY,
-    #     embedding_function=st.session_state.EMBEDDINGS,
-    #     client_settings=CHROMA_SETTINGS,
-    # )
-    loader = DirectoryLoader('data/',
-                                glob="*.pdf",
-                                loader_cls=PyPDFLoader)
-
-    documents = loader.load()
-    # print(documents)
-
-    # ***Step 2: Split Text into Chunks***
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=50)
-
-    text_chunks = text_splitter.split_documents(documents)
-    print(len(text_chunks))
-    # Convert the Text Chunks into Embeddings and Create a FAISS Vector Store***
-    DB = FAISS.from_documents(text_chunks, st.session_state.EMBEDDINGS)
+    DB = Chroma(
+        persist_directory=PERSIST_DIRECTORY,
+        embedding_function=st.session_state.EMBEDDINGS,
+        client_settings=CHROMA_SETTINGS,
+    )
     st.session_state.DB = DB
 
 if "RETRIEVER" not in st.session_state:
-    # RETRIEVER = DB.as_retriever()
-    RETRIEVER = DB.as_retriever(search_kwargs={'k': 2})
-    
+    RETRIEVER = DB.as_retriever()
     st.session_state.RETRIEVER = RETRIEVER
 
 if "LLM" not in st.session_state:
     LLM = load_model(device_type=DEVICE_TYPE, model_id=MODEL_ID, model_basename=MODEL_BASENAME)
     st.session_state["LLM"] = LLM
+
 
 if "QA" not in st.session_state:
     prompt, memory = model_memory()

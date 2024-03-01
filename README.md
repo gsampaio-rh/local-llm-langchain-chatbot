@@ -70,22 +70,82 @@ The application leverages a series of sophisticated technologies and models to p
    - The application configures logging to track its operations and provides feedback on the current configuration, such as the device type and whether source documents are displayed.
    - It ensures the necessary model directories are created and manages the different configurations set through command-line options.
 
-## How to Run the Application
+# Environment Setup 🌍
 
-Running the application is straightforward. Follow these steps to get started:
+1. 📥 Clone the repo using git:
 
-1. **Create and Activate a Virtual Environment**:
+```shell
+git clone https://github.com/PromtEngineer/localGPT.git
+```
+
+2. 🐍 Install [conda](https://www.anaconda.com/download) for virtual environment management. Create and activate a new virtual environment.
+
+```shell
+conda create -n localGPT python=3.10.0
+conda activate localGPT
+```
+
+3. 🛠️ Install the dependencies using pip
+
+To set up your environment to run the code, first install all requirements:
+
+```shell
+pip install -r requirements.txt
+```
+
+***Installing LLAMA-CPP :***
+
+LocalGPT uses [LlamaCpp-Python](https://github.com/abetlen/llama-cpp-python) for GGML (you will need llama-cpp-python <=0.1.76) and GGUF (llama-cpp-python >=0.1.83) models.
+
+
+If you want to use BLAS or Metal with [llama-cpp](https://github.com/abetlen/llama-cpp-python#installation-with-openblas--cublas--clblast--metal) you can set appropriate flags:
+
+For `NVIDIA` GPUs support, use `cuBLAS`
+
+```shell
+# Example: cuBLAS
+CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1 pip install llama-cpp-python==0.1.83 --no-cache-dir
+```
+
+For Apple Metal (`M1/M2`) support, use
+
+```shell
+# Example: METAL
+CMAKE_ARGS="-DLLAMA_METAL=on"  FORCE_CMAKE=1 pip install llama-cpp-python==0.1.83 --no-cache-dir
+```
+For more details, please refer to [llama-cpp](https://github.com/abetlen/llama-cpp-python#installation-with-openblas--cublas--clblast--metal)
+
+***Special Instructions for macOS Intel:***
+
+1. Create and Activate a Virtual Environment:
 ```bash
   python -m venv .env
   source .env/bin/activate
 ```
 
-2. **Install Required Packages**:
-```bash
-  pip install -r requirements.txt
+2. 🛠️ Install the dependencies using pip
+
+To set up your environment to run the code, first install all requirements:
+
+```shell
+pip install -r requirements.txt
 ```
 
-3. **Run the Application**:
+3. Disable Metal for Llama-CPP:
+```shell
+CMAKE_ARGS="-DLLAMA_METAL=off" pip install --force-reinstall --no-cache-dir llama-cpp-python
+```
+
+4. Install auto-gptq without CUDA extension:
+```shell
+BUILD_CUDA_EXT=0 pip install auto-gptq
+```
+
+## How to Run the Application
+
+Running the application is straightforward. Follow these steps to get started:
+
+1. **Run the Application**:
 ```bash
   python localllm.py
 ```
